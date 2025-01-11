@@ -1,0 +1,8 @@
+name: cc-example
+version: '1.0'
+main: net.cc.example.ExamplePlugin
+description: Example Plugin for CC Development
+api-version: '1.21.4'
+bootstrapper: net.cc.example.ExamplePluginBootstrap
+load: STARTUP
+authors: [ SpektrSoyuz ]
