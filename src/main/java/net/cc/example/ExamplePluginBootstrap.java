@@ -9,20 +9,24 @@ import net.cc.example.command.FlightSpeedCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings("UnstableApiUsage")
+@SuppressWarnings({"UnstableApiUsage", "unused"})
 
 public final class ExamplePluginBootstrap implements PluginBootstrap {
+
+    private ExamplePlugin plugin;
 
     @Override
     public void bootstrap(@NotNull BootstrapContext context) {
         context.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, event -> {
             final Commands commands = event.registrar();
-            commands.register(FlightSpeedCommand.createCommand().build(), "Modify your flight speed");
+
+            new FlightSpeedCommand(plugin, commands);
         });
     }
 
     @Override
     public @NotNull JavaPlugin createPlugin(@NotNull PluginProviderContext context) {
-        return new ExamplePlugin();
+        this.plugin = new ExamplePlugin();
+        return plugin;
     }
 }
